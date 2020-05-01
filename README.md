@@ -1,11 +1,11 @@
 # reverse-with-nextjs-material
-Basic web app with form that takes and string and displays back its reverse.
+Basic web app with form that takes a string and displays back its reverse.
 
 ## Goals of this code
 1. Base Project - clone the starter project of a basic NextJS web app with the Material UI theme.
 2. Material Update - enhance the app with example Material theme
 3. Web App - re-factor the app into components and pages
-4. Reverse Function - modify the app to perform basic reverse function.
+4. Reverse Function - modify the app to perform basic reverse text function.
 5. Depoloy Serverless - deploy the app as a serverless web application
 
 ### 1. Base project

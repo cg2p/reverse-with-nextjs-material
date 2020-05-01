@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../how-to-docs"
+		},
+		{
+			"path": "../echo-service"
+		}
+	],
+	"settings": {}
+}
