@@ -1,5 +1,14 @@
 # various build tasks
 
+## LOCAL
+
+## CLOUD BUILD
+1. Dockerfile
+2. Toolchain set-up
+3. get URL of app
+4. API gateway
+
+
 ## Docker local
 confirm docker
 ```
@@ -22,8 +31,10 @@ docker login
 docker push DOCKER_USERNAME/my-custom-app:latest
 ```
 
-## helm
-https://docs.bitnami.com/tutorials/create-your-first-helm-chart
+## minishift
+Build the docker image and deploy to run in minishift
+
+
 
 ## odo
 
@@ -33,3 +44,5 @@ https://docs.bitnami.com/tutorials/create-your-first-helm-chart
 
 
 ## ibmcloud dev
+## helm
+https://docs.bitnami.com/tutorials/create-your-first-helm-chart

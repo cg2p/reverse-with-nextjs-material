@@ -7,7 +7,10 @@
 			"path": "../how-to-docs"
 		},
 		{
-			"path": "../echo-service"
+			"path": "../api-logline"
+		},
+		{
+			"path": "../swp-app"
 		}
 	],
 	"settings": {}
