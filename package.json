@@ -12,9 +12,9 @@
     "react-dom": "latest"
   },
   "scripts": {
-    "dev": "next -p 5000",
+    "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   }
 }
