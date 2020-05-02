@@ -1,9 +1,6 @@
 {
 	"folders": [
 		{
-			"path": "."
-		},
-		{
 			"path": "../how-to-docs"
 		},
 		{
@@ -11,6 +8,9 @@
 		},
 		{
 			"path": "../swp-app"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {}
