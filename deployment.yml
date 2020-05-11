@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: 
+  name: reverse-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reverse-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: reverse-app
+    spec:
+      containers:
+      - name: reverse-app
+        image: reverse-app
+        ports:
+        - containerPort: 3000
+        env:
+          - name: BINDING
+            valueFrom:
+              secretKeyRef:
+                name: binding-db-mongo-swp
+                key: binding
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reverse-app-nextjs
+spec:
+  selector:
+    app: reverse-app
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  type: LoadBalancer
