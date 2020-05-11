@@ -3,7 +3,9 @@ import { Component } from 'react';
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 import Container from '@material-ui/core/Container';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -26,20 +28,28 @@ class Reverse extends Component {
     this.state = {
       reverseInput: '',
       error: '',
+      reverseSelect: false,
       reverseOutput: ''
     };
     this.handleReverseInputChange = this.handleReverseInputChange.bind(this);
+    this.handleReverseSelectChange = this.handleReverseSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleReverseInputChange (valuet) {
+  handleReverseInputChange (event) {
     this.setState({ reverseInput: event.target.value })
+  }
+
+  handleReverseSelectChange (event) {
+    this.setState({ reverseSelect: event.target.checked })
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    var txt = this.state.reverseInput;
-    var rev = txt.split("").reverse().join("");
+    var rev = this.state.reverseInput;
+    if (this.state.reverseSelect) {
+      var rev = this.state.reverseInput.split("").reverse().join("");
+    }
     this.setState({ reverseOutput: rev});
     console.log(rev);
   }
@@ -61,13 +71,17 @@ class Reverse extends Component {
               required
               fullWidth
               id="reverseInput"
-              label="Input Text to Reverse"
+              label="Input Text"
               name="reverseInput"
               autoComplete="reverseInput"
               autoFocus
               value={this.state.reverseInput}
               onChange={this.handleReverseInputChange}
             />
+            <FormControlLabel
+              control={<Checkbox onChange={this.handleReverseSelectChange} value={this.state.reverseSelect} color="primary" />}
+              label="Reverse Text"
+              />
             <Button
               type="submit"
               fullWidth
@@ -75,7 +89,7 @@ class Reverse extends Component {
               color="primary"
               className={classes.submit}
             >
-              Reverse It !
+              Go
             </Button>
           </form>
           <br />
