@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: 
+    app: reverse-app
   name: reverse-app
 spec:
   replicas: 2
