@@ -13,6 +13,8 @@ COPY . /usr/src/app
 
 RUN npm run build
 
+ENV NODE_ENV='prod'
+
 ENV ECHO_SERVICE_GET_PING=''
 ENV ECHO_SERVICE_POST_ECHO='echo'
 ENV ECHO_SERVICE_POST_REVERSE='reverse'
