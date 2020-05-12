@@ -14,6 +14,12 @@ import Typography from '@material-ui/core/Typography';
 import Layout from '../components/Layout';
 import { useStyles } from '../components/Styles';
 
+//import getConfig from 'next/config'
+
+/*
+const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
+console.log({serverRuntimeConfig, publicRuntimeConfig});
+*/
 function useStylesHook(Component) {
   return function WrappedComponent(props) {
     const classes = useStyles();
@@ -34,6 +40,12 @@ class Reverse extends Component {
     this.handleReverseInputChange = this.handleReverseInputChange.bind(this);
     this.handleReverseSelectChange = this.handleReverseSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  
+    console.log("echo_service_url", process.env.ECHO_SERVICE_URL);
+    console.log("echo_service_get_ping", process.env.ECHO_SERVICE_GET_PING);
+    console.log("echo_service_post_echo", process.env.ECHO_SERVICE_POST_ECHO);
+    console.log("echo_service_post_reverse", process.env.ECHO_SERVICE_POST_REVERSE);
+    console.log("echo_service_get_echoes", process.env.ECHO_SERVICE_GET_ECHOES);
   }
 
   handleReverseInputChange (event) {
@@ -46,6 +58,7 @@ class Reverse extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     var rev = this.state.reverseInput;
     if (this.state.reverseSelect) {
       var rev = this.state.reverseInput.split("").reverse().join("");
