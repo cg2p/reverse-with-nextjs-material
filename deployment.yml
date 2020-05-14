@@ -28,6 +28,26 @@ spec:
               secretKeyRef:
                 name: echo-service-url
                 key: echo_service_url
+          - name: ECHO_SERVICE_GET_PING
+            valueFrom:
+              configMapKeyRef:
+                name: reverse-app-config
+                key: get_ping
+          - name: ECHO_SERVICE_POST_ECHO
+            valueFrom:
+              configMapKeyRef:
+                name: reverse-app-config
+                key: post_echo
+          - name: ECHO_SERVICE_POST_REVERSE
+            valueFrom:
+              configMapKeyRef:
+                name: reverse-app-config
+                key: post_reverse
+          - name: ECHO_SERVICE_GET_ECHOES
+            valueFrom:
+              configMapKeyRef:
+                name: reverse-app-config
+                key: get_echoes
 status: {}
 ---
 apiVersion: v1
@@ -42,3 +62,16 @@ spec:
     port: 3000
     targetPort: 3000
   type: NodePort
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reverse-app-config
+    namespace: prod
+  data:
+    get_ping: 
+    post_echo: echo
+    post_reverse: reverse
+    get_echoes: echoes 
+
+

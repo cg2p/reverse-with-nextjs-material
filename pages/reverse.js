@@ -14,12 +14,6 @@ import Typography from '@material-ui/core/Typography';
 import Layout from '../components/Layout';
 import { useStyles } from '../components/Styles';
 
-//import getConfig from 'next/config'
-
-/*
-const { serverRuntimeConfig, publicRuntimeConfig } = getConfig();
-console.log({serverRuntimeConfig, publicRuntimeConfig});
-*/
 function useStylesHook(Component) {
   return function WrappedComponent(props) {
     const classes = useStyles();
@@ -39,13 +33,9 @@ class Reverse extends Component {
     };
     this.handleReverseInputChange = this.handleReverseInputChange.bind(this);
     this.handleReverseSelectChange = this.handleReverseSelectChange.bind(this);
+    this.handleEchoOrReverseResponse = this.handleEchoOrReverseResponse.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   
-    console.log("echo_service_url", process.env.ECHO_SERVICE_URL);
-    console.log("echo_service_get_ping", process.env.ECHO_SERVICE_GET_PING);
-    console.log("echo_service_post_echo", process.env.ECHO_SERVICE_POST_ECHO);
-    console.log("echo_service_post_reverse", process.env.ECHO_SERVICE_POST_REVERSE);
-    console.log("echo_service_get_echoes", process.env.ECHO_SERVICE_GET_ECHOES);
   }
 
   handleReverseInputChange (event) {
@@ -56,15 +46,60 @@ class Reverse extends Component {
     this.setState({ reverseSelect: event.target.checked })
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleEchoOrReverseResponse (value) {
+    this.setState({
+      reverseOutput: value
+    });
+  }
 
-    var rev = this.state.reverseInput;
+  async handleSubmit(event) {
+    event.preventDefault();
+    let inputText = this.state.reverseInput;
+
+    let userid = "789";
+    let myurl = process.env.ECHO_SERVICE_URL;
     if (this.state.reverseSelect) {
-      var rev = this.state.reverseInput.split("").reverse().join("");
-    }
-    this.setState({ reverseOutput: rev});
-    console.log(rev);
+      myurl += '/' + process.env.ECHO_SERVICE_POST_REVERSE;
+    } else {
+      myurl += '/' + process.env.ECHO_SERVICE_POST_ECHO;
+    } 
+    
+    async function getEchoOrReverse(url, txt) {
+      var myheaders = new Headers({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+
+      try {
+        let response = await fetch(url, {
+          method: 'POST',
+          headers: myheaders,
+          body: JSON.stringify({ uid: userid, inputText: txt }),
+        });
+  
+        if (response.ok) {
+          let data = await response.json(); 
+          return data.text;
+        } else {
+          console.log('echo api service call failed.');
+          let error = new Error(response.statusText);
+          error.response = response;
+          throw error;        
+        }
+      } catch (error) {
+        console.error('Error thrown inside getEchoOrReverse', error); 
+      }
+    };
+
+    try {
+      getEchoOrReverse(myurl, inputText).then(value => this.handleEchoOrReverseResponse(value));
+    } catch (error) {
+      console.error(
+        'Error caught outside.',
+        error
+      );
+      this.setState({ error: error.message });
+    }; 
   }
 
   render() {
