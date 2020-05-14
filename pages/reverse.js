@@ -65,7 +65,7 @@ class Reverse extends Component {
     } 
     console.log("url %s");
     console.log("uid %s", userid);
-    console.log("inputText %s", txt);
+    console.log("inputText %s", inputText);
     
     async function getEchoOrReverse(url, txt) {
       var myheaders = new Headers({

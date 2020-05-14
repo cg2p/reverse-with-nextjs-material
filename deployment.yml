@@ -1,7 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reverse-app-config
+  namespace: prod
+data:
+  echo_service_get_ping: ''
+  echo_service_post_echo: echo
+  echo_service_post_reverse: reverse
+  echo_service_get_echoes: echoes
+---  
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: reverse-app
   name: reverse-app
@@ -10,10 +20,8 @@ spec:
   selector:
     matchLabels:
       app: reverse-app
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: reverse-app
     spec:
@@ -22,33 +30,16 @@ spec:
         image: reverse-app
         ports:
         - containerPort: 3000
+        command: [ "/bin/sh", "-c", "env" ]
         env:
           - name: ECHO_SERVICE_URL
             valueFrom:
               secretKeyRef:
                 name: echo-service-url
                 key: echo_service_url
-          - name: ECHO_SERVICE_GET_PING
-            valueFrom:
-              configMapKeyRef:
-                name: reverse-app-config
-                key: get_ping
-          - name: ECHO_SERVICE_POST_ECHO
-            valueFrom:
-              configMapKeyRef:
-                name: reverse-app-config
-                key: post_echo
-          - name: ECHO_SERVICE_POST_REVERSE
-            valueFrom:
-              configMapKeyRef:
-                name: reverse-app-config
-                key: post_reverse
-          - name: ECHO_SERVICE_GET_ECHOES
-            valueFrom:
-              configMapKeyRef:
-                name: reverse-app-config
-                key: get_echoes
-status: {}
+        envFrom:
+          - configMapRef:
+              name: reverse-app-config
 ---
 apiVersion: v1
 kind: Service
@@ -62,14 +53,3 @@ spec:
     port: 3000
     targetPort: 3000
   type: NodePort
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: reverse-app-config
-  namespace: prod
-data:
-  get_ping: ''
-  post_echo: echo
-  post_reverse: reverse
-  get_echoes: echoes
