@@ -67,11 +67,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: reverse-app-config
-    namespace: prod
-  data:
-    get_ping: 
-    post_echo: echo
-    post_reverse: reverse
-    get_echoes: echoes 
-
-
+  namespace: prod
+data:
+  get_ping: ''
+  post_echo: echo
+  post_reverse: reverse
+  get_echoes: echoes
