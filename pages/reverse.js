@@ -14,6 +14,9 @@ import Typography from '@material-ui/core/Typography';
 import Layout from '../components/Layout';
 import { useStyles } from '../components/Styles';
 
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig();
+
 function useStylesHook(Component) {
   return function WrappedComponent(props) {
     const classes = useStyles();
@@ -57,11 +60,12 @@ class Reverse extends Component {
     let inputText = this.state.reverseInput;
 
     let userid = "789";
-    let myurl = process.env.ECHO_SERVICE_URL;
+    //let myurl = process.env.ECHO_SERVICE_URL;
+    let myurl = publicRuntimeConfig.ECHO_SERVICE_URL;
     if (this.state.reverseSelect) {
-      myurl += '/' + process.env.ECHO_SERVICE_POST_REVERSE;
+      myurl += '/' + publicRuntimeConfig.ECHO_SERVICE_POST_REVERSE;
     } else {
-      myurl += '/' + process.env.ECHO_SERVICE_POST_ECHO;
+      myurl += '/' + publicRuntimeConfig.ECHO_SERVICE_POST_ECHO;
     } 
     console.log("url %s");
     console.log("uid %s", userid);
