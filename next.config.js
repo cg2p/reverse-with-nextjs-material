@@ -1,5 +1,9 @@
-require('dotenv').config()
+require('dotenv').config();
+
 module.exports = {
+  serverRuntimeConfig: {
+  },
+
   publicRuntimeConfig: {
     ECHO_SERVICE_URL: process.env.ECHO_SERVICE_URL,
     ECHO_SERVICE_GET_PING: process.env.ECHO_SERVICE_GET_PING,

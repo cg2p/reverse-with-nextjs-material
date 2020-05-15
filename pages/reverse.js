@@ -15,7 +15,7 @@ import Layout from '../components/Layout';
 import { useStyles } from '../components/Styles';
 
 import getConfig from 'next/config'
-const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
 
 function useStylesHook(Component) {
   return function WrappedComponent(props) {
@@ -38,8 +38,9 @@ class Reverse extends Component {
     this.handleReverseSelectChange = this.handleReverseSelectChange.bind(this);
     this.handleEchoOrReverseResponse = this.handleEchoOrReverseResponse.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  
+
   }
+
 
   handleReverseInputChange (event) {
     this.setState({ reverseInput: event.target.value })
@@ -67,7 +68,7 @@ class Reverse extends Component {
     } else {
       myurl += '/' + publicRuntimeConfig.ECHO_SERVICE_POST_ECHO;
     } 
-    console.log("url %s");
+    console.log("url %s", myurl);
     console.log("uid %s", userid);
     console.log("inputText %s", inputText);
     
