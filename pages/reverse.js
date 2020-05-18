@@ -61,8 +61,8 @@ class Reverse extends Component {
     let inputText = this.state.reverseInput;
 
     let userid = "789";
-    //let myurl = process.env.ECHO_SERVICE_URL;
     let myurl = publicRuntimeConfig.ECHO_SERVICE_URL;
+
     if (this.state.reverseSelect) {
       myurl += '/' + publicRuntimeConfig.ECHO_SERVICE_POST_REVERSE;
     } else {
