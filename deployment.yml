@@ -20,15 +20,6 @@ spec:
         image: reverse-app
         ports:
         - containerPort: 3000
-        env:
-          - name: ECHO_SERVICE_URL
-            valueFrom:
-              secretKeyRef:
-                name: echo-service-url
-                key: echo_service_url
-        envFrom:
-          - configMapRef:
-              name: reverse-app-config
 ---
 apiVersion: v1
 kind: Service
@@ -43,14 +34,3 @@ spec:
     port: 3000
     targetPort: 3000
   type: LoadBalancer
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: reverse-app-config
-  namespace: prod
-data:
-  echo_service_get_ping: ''
-  echo_service_post_echo: echo
-  echo_service_post_reverse: reverse
-  echo_service_get_echoes: echoes
