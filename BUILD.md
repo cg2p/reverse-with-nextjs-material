@@ -30,19 +30,3 @@ push to registry
 docker login
 docker push DOCKER_USERNAME/my-custom-app:latest
 ```
-
-## minishift
-Build the docker image and deploy to run in minishift
-
-
-
-## odo
-
-
-
-## DevOps
-
-
-## ibmcloud dev
-## helm
-https://docs.bitnami.com/tutorials/create-your-first-helm-chart
