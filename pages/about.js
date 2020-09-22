@@ -31,12 +31,19 @@ export default function About() {
           <TableRow>
             <TableCell>Version</TableCell>
             <TableCell>Date</TableCell>
+            <TableCell>Comment</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
             <TableCell>v1</TableCell>
             <TableCell>1 May 2020</TableCell>
+            <TableCell>First version</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>v2</TableCell>
+            <TableCell>22 Sep 2020</TableCell>
+            <TableCell>Second version</TableCell>
           </TableRow>
         </TableBody>
       </Table>
