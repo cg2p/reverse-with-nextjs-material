@@ -1,0 +1,11 @@
+apiVersion: skaffold/v2beta4
+kind: Config
+metadata:
+  name: reverse-with-nextjs-material
+build:
+  artifacts:
+  - image: reverse-app
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yml

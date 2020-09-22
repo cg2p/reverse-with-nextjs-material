@@ -20,7 +20,7 @@ export default function App() {
       <div className={classes.heroContent}>
       <Container maxWidth="sm">
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Reverse
+            New Reverse Appx
           </Typography>
           <Typography variant="h5" align="center" color="textSecondary" paragraph>
           Gather round to see the amazing text reversing application.
