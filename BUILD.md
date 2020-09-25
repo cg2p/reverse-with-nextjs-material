@@ -25,8 +25,12 @@ docker run -p 3000:3000 --detach --name reverse-app reverse-app:1.0
 ```
 test http://localhost:3000
 
+## Docker Registry
 push to registry
 ```
 docker login
 docker push DOCKER_USERNAME/my-custom-app:latest
 ```
+
+## Quay.io Registry
+
