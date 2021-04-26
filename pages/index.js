@@ -20,16 +20,16 @@ export default function App() {
       <div className={classes.heroContent}>
       <Container maxWidth="sm">
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            NextJS Material Postgres
+            New Reverse App
           </Typography>
           <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          Basic NextJS web app using API routes to query PostgreSQL database.
+          Gather round to see the amazing text reversing application.
           </Typography>
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
                 <Button variant="contained" color="primary" component={Link} naked href="/reverse">
-                  Call To Action
+                  Reverse Call To Action
                 </Button>
               </Grid>
             </Grid>

@@ -15,13 +15,13 @@ export default function Header() {
     <AppBar position="relative" color="default" elevation={0} className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-          <Link href="/">My Web App
+          <Link href="/">Reverse
           </Link>
           
         </Typography>
         <nav>
-          <Link variant="button" color="textPrimary" href="/my-new-page" className={classes.link}>
-            My New Page
+          <Link variant="button" color="textPrimary" href="/reverse" className={classes.link}>
+            Reverse
           </Link>
           <Link variant="button" color="textPrimary" href="/about" className={classes.link}>
             About
